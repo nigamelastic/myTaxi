@@ -3,13 +3,17 @@ package com.mytaxi.android_demo;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.Espresso;
+
+import android.support.test.espresso.assertion.ViewAssertions;
+import android.support.test.espresso.contrib.DrawerActions;
+import android.support.test.espresso.contrib.DrawerMatchers;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
+
 
 import com.mytaxi.android_demo.activities.MainActivity;
 
@@ -32,7 +36,7 @@ public class ExampleInstrumentedTest {
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(
             MainActivity.class);
 
-   // @Test
+    // @Test
     public void test1_UseAppContext() throws Exception {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
@@ -45,12 +49,18 @@ public class ExampleInstrumentedTest {
         String username = "whiteelephant261";
         String password = "video";
         //Enter Username
-        Espresso.onView(ViewMatchers.withId(R.id.edt_username))
-                .perform(typeText(username));
+        Espresso.onView(ViewMatchers.withId(R.id.edt_username)).perform(typeText(username));
         //Enter Password
-        Espresso.onView(ViewMatchers.withId(R.id.edt_password))
-                .perform(typeText(password));
+        Espresso.onView(ViewMatchers.withId(R.id.edt_password)).perform(typeText(password));
         Espresso.onView(ViewMatchers.withId(R.id.btn_login)).perform(click());
+        Thread.sleep(10000);
+        //DrawerActions.openDrawer(R.id.drawer_layout);
+        Espresso.onView(ViewMatchers.withId(R.id.drawer_layout)).perform(DrawerActions.open());
+
+        // Check that the number is displayed in the UI.
+        Espresso.onView(ViewMatchers.withId(R.id.nav_view))
+                .check(ViewAssertions.matches(ViewMatchers.withText(username)));
+        Thread.sleep(100000);
 
 
     }
