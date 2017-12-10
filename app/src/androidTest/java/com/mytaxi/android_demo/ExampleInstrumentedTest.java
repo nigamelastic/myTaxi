@@ -1,6 +1,7 @@
 package com.mytaxi.android_demo;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.Espresso;
 
@@ -9,6 +10,7 @@ import android.support.test.espresso.contrib.DrawerActions;
 import android.support.test.espresso.contrib.DrawerMatchers;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
+import android.support.test.rule.GrantPermissionRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import static android.support.test.espresso.action.ViewActions.click;
@@ -17,6 +19,7 @@ import static android.support.test.espresso.action.ViewActions.typeText;
 
 import com.mytaxi.android_demo.activities.MainActivity;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,6 +36,9 @@ public class ExampleInstrumentedTest {
 
 
     @Rule
+    public GrantPermissionRule permissionRule = GrantPermissionRule.grant(android.Manifest.permission.ACCESS_FINE_LOCATION);
+
+    @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(
             MainActivity.class);
 
@@ -46,6 +52,7 @@ public class ExampleInstrumentedTest {
 
     @Test
     public void test2_UserLogin() throws Exception {
+
         String username = "whiteelephant261";
         String password = "video";
         //Enter Username
@@ -58,9 +65,8 @@ public class ExampleInstrumentedTest {
         Espresso.onView(ViewMatchers.withId(R.id.drawer_layout)).perform(DrawerActions.open());
 
         // Check that the number is displayed in the UI.
-        Espresso.onView(ViewMatchers.withId(R.id.nav_view))
+        Espresso.onView(ViewMatchers.withId(R.id.nav_username))
                 .check(ViewAssertions.matches(ViewMatchers.withText(username)));
-        Thread.sleep(100000);
 
 
     }
