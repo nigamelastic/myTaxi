@@ -17,9 +17,28 @@ jobs:
           paths:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+
+
+      - run:
+          name: Create avd
+          command: echo no | avdmanager create avd -n testEmulator -k "system-images;android-24;default;armeabi-v7a"
+          environment:
+            TERM: dumb
+
+      - run:
+          name: Start emulator
+          command:  /opt/android-sdk-linux/emulator/emulator -avd testEmulator -no-audio -no-window
+          background: true
+          environment:
+            TERM: dumb
+
       - run:
           name: Run Tests
           command: ./gradlew lint test
+
+      - run:
+          name: Run Instrument Tests MyTaxi
+          command:  ./gradlew connectedAndroidTest --stacktrace    
       - store_artifacts:
           path: app/build/reports
           destination: reports
