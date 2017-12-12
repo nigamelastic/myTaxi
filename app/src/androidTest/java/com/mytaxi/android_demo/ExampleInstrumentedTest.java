@@ -124,7 +124,6 @@ public class ExampleInstrumentedTest {
         Espresso.onView(ViewMatchers.withId(R.id.btn_login)).perform(click());
 
         Thread.sleep(7000);
-        //DrawerActions.openDrawer(R.id.drawer_layout);
         Espresso.onView(ViewMatchers.withId(R.id.drawer_layout)).perform(DrawerActions.open());
 
 
@@ -138,29 +137,28 @@ public class ExampleInstrumentedTest {
 
 
     @Test
-    public void test3_UserSearchDriver() throws InterruptedException {
+    public void test3_UserSearchDriverAndClick() throws InterruptedException {
 
 
         Thread.sleep(7000);
+        //Typing the Search Keyword
         Espresso.onView(ViewMatchers.withId(R.id.textSearch))
                 .perform(typeText(searchKeyword));
 
 
         Thread.sleep(7000);
-        //Espresso.onView(ViewMatchers.withId(R.id.action_mode_bar_stub)).perform(click());
+
+        //Checking whether the desired driver is displayed in the list
         onView(withText(driverName))
                 .inRoot(RootMatchers.withDecorView(not(is(mActivity.getWindow().getDecorView()))))
                 .check(matches(isDisplayed()));
-
+        //Selecting the desired driver
         onView(withText(driverName))
                 .inRoot(RootMatchers.withDecorView(not(is(mActivity.getWindow().getDecorView()))))
                 .perform(click());
-
-        Thread.sleep(9999);
-
-
-        //Espresso.onData(CoreMatchers.allOf(CoreMatchers.is(CoreMatchers.instanceOf(String.class)), CoreMatchers.is(driverName))).perform(click());
-        Thread.sleep(1000);
+        //checking the drivername
+        onView(withId(R.id.textViewDriverName)).check(matches(withText("Sarah Friedrich")));
+        onView(withId(R.id.fab)).perform(click());
 
 
     }
