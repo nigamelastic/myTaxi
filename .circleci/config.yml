@@ -20,6 +20,9 @@ jobs:
       # Customize the JVM maximum heap limit
       JVM_OPTS: -Xmx3200m
       TERM: dumb
+      ANDROID_HOME: /usr/local/android-sdk-linux
+      ANDROID_TARGET: android-23
+      ADB_INSTALL_TIMEOUT: 12
     
     steps:
       - checkout
