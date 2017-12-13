@@ -32,9 +32,6 @@ jobs:
           command: ./gradlew lint test
 
       - run:
-          name: compiling apk
-          command: ./gradlew assembleDebug    
-      - run:
           name: waiting for system to boot
           command: circle-android wait-for-boot
 
