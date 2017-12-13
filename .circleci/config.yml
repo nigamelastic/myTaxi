@@ -42,10 +42,6 @@ jobs:
           name: Run Instrument Tests MyTaxi
           command:  ./gradlew connectedAndroidTest --stacktrace  
 
-      - run:
-          name: add to circle artifacts
-          command: cp -r app/build/outputs $CIRCLE_ARTIFACTS
-
 
       - run:
           name: add to circle reports

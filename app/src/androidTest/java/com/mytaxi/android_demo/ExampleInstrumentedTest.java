@@ -116,7 +116,7 @@ public class ExampleInstrumentedTest {
                 .perform(typeText(searchKeyword));
 
 
-        Thread.sleep(13000);
+        Thread.sleep(23000);
 
         //Checking whether the desired driver is displayed in the list
         onView(withText(driverName))
