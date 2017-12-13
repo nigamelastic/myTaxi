@@ -37,9 +37,7 @@ jobs:
       - run:
           name: waiting for system to boot
           command: circle-android wait-for-boot
-      - run:
-          name: installing app on the emulator
-          command: ./gradlew installDebug  
+
       - run:
           name: Run Instrument Tests MyTaxi
           command:  ./gradlew connectedAndroidTest --stacktrace    
