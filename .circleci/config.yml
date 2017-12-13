@@ -30,12 +30,16 @@ jobs:
       - run:
           name: Run Tests
           command: ./gradlew lint test
+
+      - run:
+          name: Run Tests
+          command: ./gradlew assembleDebug    
       - run:
           name: waiting for system to boot
           command: circle-android wait-for-boot
       - run:
           name: installing app on the emulator
-          command: adb install /app/build/outputs/apk/debug/app-debug.apk  
+          command: ./gradlew installDebug  
       - run:
           name: Run Instrument Tests MyTaxi
           command:  ./gradlew connectedAndroidTest --stacktrace    
