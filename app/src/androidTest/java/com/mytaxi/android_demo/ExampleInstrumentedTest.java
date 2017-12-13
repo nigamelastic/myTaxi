@@ -105,7 +105,7 @@ public class ExampleInstrumentedTest {
     }
 
 
-   // @Test
+    @Test
     public void test3_UserSearchDriverAndClick() throws InterruptedException {
 
 
@@ -116,7 +116,7 @@ public class ExampleInstrumentedTest {
                 .perform(typeText(searchKeyword));
 
 
-        Thread.sleep(7000);
+        Thread.sleep(13000);
 
         //Checking whether the desired driver is displayed in the list
         onView(withText(driverName))
