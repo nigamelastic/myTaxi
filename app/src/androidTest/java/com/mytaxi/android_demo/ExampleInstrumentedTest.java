@@ -17,6 +17,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.action.ViewActions.typeText;
 
 import com.mytaxi.android_demo.activities.MainActivity;
@@ -125,7 +126,7 @@ public class ExampleInstrumentedTest {
         //Selecting the desired driver
         onView(withText(driverName))
                 .inRoot(RootMatchers.withDecorView(not(is(mActivity.getWindow().getDecorView()))))
-                .perform(click());
+                .perform(scrollTo()).perform(click());
         //checking the drivername
         onView(withId(R.id.textViewDriverName)).check(matches(withText("Sarah Friedrich")));
         onView(withId(R.id.fab)).perform(click());
