@@ -105,7 +105,7 @@ public class ExampleInstrumentedTest {
     }
 
 
-    @Test
+   // @Test
     public void test3_UserSearchDriverAndClick() throws InterruptedException {
 
 
