@@ -18,11 +18,6 @@ jobs:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 
-
-      - run:
-          name: Setup emulator
-          command: sdkmanager "system-images;android-22;default;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-22;default;armeabi-v7a"
-
       - run:
           name: Run Tests
           command: ./gradlew lint test
@@ -30,7 +25,6 @@ jobs:
       - run:
           name: compiling apk
           command: ./gradlew assembleDebug    
-
 
       - run:
           name: Run Instrument Tests MyTaxi
